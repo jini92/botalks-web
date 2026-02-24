@@ -9,8 +9,6 @@
   <meta property="og:description" content="말하면 AI가 대답합니다. BOTALKS로 언제 어디서나 자연스러운 음성 대화를 경험하세요.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://botalks.app/">
-  <meta property="og:image" content="https://botalks.app/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,181 +31,84 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
+      background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden;
     }
 
-    /* === NAV === */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(5,5,7,0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .nav-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 24px;
-    }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(5,5,7,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
     nav .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
     nav .logo span { color: var(--primary); }
-    nav .nav-links { display: flex; gap: 24px; align-items: center; }
+    nav .nav-links { display: flex; gap: 20px; align-items: center; }
     nav .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
     nav .nav-links a:hover { color: var(--text); }
-    nav .nav-cta {
-      background: var(--primary); color: #fff !important;
-      padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.85rem;
-    }
+    nav .nav-cta { background: var(--primary); color: #fff !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; }
     nav .nav-cta:hover { background: var(--primary-dark); }
 
-    /* === HERO === */
-    .hero {
-      text-align: center;
-      padding: 160px 24px 80px;
-      position: relative;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 6px 16px; border-radius: 100px;
-      font-size: 0.85rem; color: var(--muted); margin-bottom: 32px;
-    }
+    /* LANG SELECTOR */
+    .lang-selector { position: relative; display: inline-flex; align-items: center; cursor: pointer; }
+    .lang-selector select { appearance: none; background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 4px 24px 4px 8px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; font-family: inherit; }
+    .lang-selector select:hover { border-color: var(--primary); color: var(--text); }
+    .lang-selector::after { content: '▾'; position: absolute; right: 8px; color: var(--muted); font-size: 0.7rem; pointer-events: none; }
+
+    /* HERO */
+    .hero { text-align: center; padding: 160px 24px 80px; position: relative; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; color: var(--muted); margin-bottom: 32px; }
     .hero-badge .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 900; letter-spacing: -0.03em;
-      line-height: 1.1; margin-bottom: 20px;
-    }
-    .hero h1 .gradient {
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero .subtitle {
-      font-size: 1.15rem; color: var(--muted); max-width: 540px; margin: 0 auto 40px;
-      line-height: 1.7;
-    }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+    .hero h1 .gradient { background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero .subtitle { font-size: 1.15rem; color: var(--muted); max-width: 540px; margin: 0 auto 40px; line-height: 1.7; }
     .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--primary); color: #fff; padding: 14px 28px;
-      border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem;
-      transition: all 0.2s;
-    }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s; }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--surface); color: var(--text); padding: 14px 28px;
-      border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem;
-      border: 1px solid var(--border); transition: all 0.2s;
-    }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); color: var(--text); padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 1px solid var(--border); transition: all 0.2s; }
     .btn-secondary:hover { background: var(--surface-hover); }
 
-    /* === SECTION COMMON === */
+    /* SECTIONS */
     section { padding: 80px 24px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-title {
-      text-align: center; font-size: 2rem; font-weight: 800;
-      letter-spacing: -0.02em; margin-bottom: 12px;
-    }
-    .section-desc {
-      text-align: center; color: var(--muted); font-size: 1.05rem;
-      max-width: 500px; margin: 0 auto 48px;
-    }
+    .section-title { text-align: center; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .section-desc { text-align: center; color: var(--muted); font-size: 1.05rem; max-width: 500px; margin: 0 auto 48px; }
 
-    /* === FEATURES === */
-    .features-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;
-    }
-    .feature-card {
-      background: var(--surface); border-radius: 16px; padding: 28px;
-      border: 1px solid var(--border); transition: all 0.3s;
-    }
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .feature-card { background: var(--surface); border-radius: 16px; padding: 28px; border: 1px solid var(--border); transition: all 0.3s; }
     .feature-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
-    .feature-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 16px;
-      background: var(--primary-glow);
-    }
+    .feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; background: var(--primary-glow); }
     .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
     .feature-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 
-    /* === HOW IT WORKS === */
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;
-    }
+    /* HOW IT WORKS */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
     .step-card { text-align: center; padding: 20px; }
-    .step-number {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1.2rem; margin: 0 auto 16px;
-    }
+    .step-number { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; margin: 0 auto 16px; }
     .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
     .step-card p { color: var(--muted); font-size: 0.9rem; }
-    .step-connector { display: none; }
 
-    /* === PRICING === */
-    .pricing-card {
-      max-width: 400px; margin: 0 auto;
-      background: var(--surface); border-radius: 20px; padding: 40px;
-      border: 2px solid var(--primary); text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .pricing-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-    }
-    .pricing-label { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-    .pricing-amount { font-size: 3rem; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
-    .pricing-period { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
-    .pricing-trial {
-      display: inline-block; background: rgba(129,140,248,0.1);
-      color: var(--accent); padding: 6px 16px; border-radius: 100px;
-      font-weight: 600; font-size: 0.9rem;
-    }
-    .pricing-features { margin-top: 24px; text-align: left; }
-    .pricing-features li {
-      list-style: none; padding: 8px 0; color: var(--muted); font-size: 0.9rem;
-      display: flex; align-items: center; gap: 10px;
-    }
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 700px; margin: 0 auto; }
+    .pricing-card { background: var(--surface); border-radius: 20px; padding: 36px; border: 1px solid var(--border); text-align: center; position: relative; overflow: hidden; transition: all 0.3s; }
+    .pricing-card.featured { border: 2px solid var(--primary); }
+    .pricing-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); }
+    .pricing-badge { display: inline-block; background: var(--primary); color: #fff; padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .pricing-label { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+    .pricing-amount { font-size: 2.5rem; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
+    .pricing-amount .currency { font-size: 1.2rem; vertical-align: super; }
+    .pricing-period { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .pricing-features { text-align: left; margin-top: 20px; }
+    .pricing-features li { list-style: none; padding: 8px 0; color: var(--muted); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
     .pricing-features .check { color: #22c55e; font-size: 1.1rem; }
 
-    /* === REQUIREMENTS === */
-    .req-list {
-      max-width: 500px; margin: 0 auto;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .req-item {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--surface); border-radius: 12px; padding: 14px 20px;
-      border: 1px solid var(--border);
-    }
+    /* REQUIREMENTS */
+    .req-list { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .req-item { display: flex; align-items: center; gap: 12px; background: var(--surface); border-radius: 12px; padding: 14px 20px; border: 1px solid var(--border); }
     .req-item .icon { font-size: 1.2rem; }
     .req-item p { color: var(--muted); font-size: 0.9rem; }
 
-    /* === FOOTER === */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-    }
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-    }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 40px 24px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-brand { font-weight: 700; font-size: 1rem; }
     .footer-brand span { color: var(--primary); }
     .footer-links { display: flex; gap: 24px; }
@@ -215,16 +116,26 @@
     .footer-links a:hover { color: var(--text); }
     .footer-copy { width: 100%; text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 16px; }
 
-    /* === RESPONSIVE === */
+    /* i18n */
+    [data-lang="en"] { display: none; }
+    html[lang="en"] [data-lang="en"] { display: block; }
+    html[lang="en"] [data-lang="ko"] { display: none; }
+    html[lang="en"] [data-lang-inline="en"] { display: inline; }
+    html[lang="en"] [data-lang-inline="ko"] { display: none; }
+    [data-lang-inline="en"] { display: none; }
+    [data-lang-inline="ko"] { display: inline; }
+
+    /* RESPONSIVE */
     @media (max-width: 640px) {
       .hero { padding: 120px 16px 60px; }
       .hero h1 { font-size: 2.2rem; }
       section { padding: 60px 16px; }
       .features-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; text-align: center; }
       .footer-links { justify-content: center; }
-      nav .nav-links { gap: 12px; }
+      nav .nav-links { gap: 10px; }
     }
   </style>
 </head>
@@ -235,11 +146,20 @@
     <div class="nav-inner">
       <div class="logo">🎙️ <span>BOTALKS</span></div>
       <div class="nav-links">
-        <a href="#features">기능</a>
-        <a href="#how-it-works">사용법</a>
-        <a href="#pricing">가격</a>
-        <a href="/support/">지원</a>
-        <a href="https://testflight.apple.com/join/tjSbthwS" class="nav-cta">다운로드</a>
+        <a href="#features" data-lang-inline="ko">기능</a><a href="#features" data-lang-inline="en">Features</a>
+        <a href="#how-it-works" data-lang-inline="ko">사용법</a><a href="#how-it-works" data-lang-inline="en">How It Works</a>
+        <a href="#pricing" data-lang-inline="ko">가격</a><a href="#pricing" data-lang-inline="en">Pricing</a>
+        <a href="/support/" data-lang-inline="ko">지원</a><a href="/support/" data-lang-inline="en">Support</a>
+        <div class="lang-selector">
+          <select id="lang-switch" onchange="switchLang(this.value)">
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="vi">🇻🇳 Tiếng Việt</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="zh">🇨🇳 中文</option>
+          </select>
+        </div>
+        <a href="https://testflight.apple.com/join/tjSbthwS" class="nav-cta" data-lang-inline="ko">다운로드</a><a href="https://testflight.apple.com/join/tjSbthwS" class="nav-cta" data-lang-inline="en">Download</a>
       </div>
     </div>
   </nav>
@@ -248,19 +168,23 @@
   <section class="hero">
     <div class="hero-badge">
       <span class="dot"></span>
-      App Store 출시 준비 중
+      <span data-lang-inline="ko">App Store 출시 준비 중</span>
+      <span data-lang-inline="en">Coming to App Store</span>
     </div>
-    <h1>말하면 AI가<br><span class="gradient">대답합니다</span></h1>
-    <p class="subtitle">
-      BOTALKS로 언제 어디서나 자연스러운 음성 대화를 경험하세요.<br>
-      Talk and AI responds. Voice-first AI conversations.
-    </p>
+    <div data-lang="ko">
+      <h1>말하면 AI가<br><span class="gradient">대답합니다</span></h1>
+      <p class="subtitle">BOTALKS로 언제 어디서나 자연스러운 음성 대화를 경험하세요.<br>내 AI, 내 데이터, 내 음성.</p>
+    </div>
+    <div data-lang="en">
+      <h1>Talk and AI<br><span class="gradient">Responds</span></h1>
+      <p class="subtitle">Experience natural voice conversations anytime with BOTALKS.<br>Your AI, your data, your voice.</p>
+    </div>
     <div class="hero-buttons">
       <a href="https://testflight.apple.com/join/tjSbthwS" class="btn-primary">
-        🍎 TestFlight 참여하기
+        🍎 <span data-lang-inline="ko">TestFlight 참여하기</span><span data-lang-inline="en">Join TestFlight</span>
       </a>
       <a href="#how-it-works" class="btn-secondary">
-        사용 방법 보기 →
+        <span data-lang-inline="ko">사용 방법 보기 →</span><span data-lang-inline="en">How It Works →</span>
       </a>
     </div>
   </section>
@@ -268,28 +192,34 @@
   <!-- Features -->
   <section id="features">
     <div class="section-inner">
-      <h2 class="section-title">왜 BOTALKS인가요?</h2>
-      <p class="section-desc">타이핑 대신 대화하세요. 가장 자연스러운 AI 인터페이스.</p>
+      <div data-lang="ko">
+        <h2 class="section-title">왜 BOTALKS인가요?</h2>
+        <p class="section-desc">타이핑 대신 대화하세요. 가장 자연스러운 AI 인터페이스.</p>
+      </div>
+      <div data-lang="en">
+        <h2 class="section-title">Why BOTALKS?</h2>
+        <p class="section-desc">Talk instead of typing. The most natural AI interface.</p>
+      </div>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🎤</div>
-          <h3>실시간 음성 대화</h3>
-          <p>마이크 버튼 하나로 녹음 → STT → AI 응답 → TTS까지 자동 처리. 끊김 없는 대화 경험.</p>
+          <div data-lang="ko"><h3>실시간 음성 대화</h3><p>마이크 버튼 하나로 녹음 → STT → AI 응답 → TTS까지 자동 처리. 끊김 없는 대화 경험.</p></div>
+          <div data-lang="en"><h3>Real-time Voice Chat</h3><p>One tap: record → STT → AI response → TTS. Seamless conversation flow.</p></div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📱</div>
-          <h3>간편한 연결</h3>
-          <p>QR 코드 스캔 한 번이면 끝. 또는 딥링크로 OpenClaw Gateway에 즉시 연결됩니다.</p>
+          <div data-lang="ko"><h3>간편한 연결</h3><p>QR 코드 스캔 한 번이면 끝. 또는 딥링크로 OpenClaw Gateway에 즉시 연결됩니다.</p></div>
+          <div data-lang="en"><h3>Easy Connection</h3><p>One QR scan and you're connected. Or use a deep link to connect to your OpenClaw Gateway instantly.</p></div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔒</div>
-          <h3>프라이버시 우선</h3>
-          <p>음성 데이터는 실시간 처리 후 즉시 삭제. 서버에 저장하지 않습니다. 당신의 대화는 당신만의 것.</p>
+          <div data-lang="ko"><h3>프라이버시 우선</h3><p>음성 데이터는 실시간 처리 후 즉시 삭제. 서버에 저장하지 않습니다. 당신의 대화는 당신만의 것.</p></div>
+          <div data-lang="en"><h3>Privacy First</h3><p>Voice data is processed in real-time and immediately discarded. Never stored on servers. Your conversations stay yours.</p></div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
-          <h3>5단계 온보딩</h3>
-          <p>처음 사용자도 가이드를 따라 쉽고 빠르게 시작. 복잡한 설정 없이 바로 대화를 시작하세요.</p>
+          <div data-lang="ko"><h3>5단계 온보딩</h3><p>처음 사용자도 가이드를 따라 쉽고 빠르게 시작. 복잡한 설정 없이 바로 대화를 시작하세요.</p></div>
+          <div data-lang="en"><h3>5-Step Onboarding</h3><p>New users get guided setup. No complex configuration — start talking right away.</p></div>
         </div>
       </div>
     </div>
@@ -298,28 +228,34 @@
   <!-- How It Works -->
   <section id="how-it-works" style="background: var(--surface);">
     <div class="section-inner">
-      <h2 class="section-title">사용 방법</h2>
-      <p class="section-desc">4단계로 시작하는 AI 음성 대화</p>
+      <div data-lang="ko">
+        <h2 class="section-title">사용 방법</h2>
+        <p class="section-desc">4단계로 시작하는 AI 음성 대화</p>
+      </div>
+      <div data-lang="en">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-desc">Start AI voice conversations in 4 steps</p>
+      </div>
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-number">1</div>
-          <h3>OpenClaw 설치</h3>
-          <p>PC 또는 서버에 <a href="https://docs.openclaw.ai" style="color:var(--accent)">OpenClaw</a>을 설치하고 Gateway를 실행합니다.</p>
+          <div data-lang="ko"><h3>OpenClaw 설치</h3><p>PC 또는 서버에 <a href="https://docs.openclaw.ai" style="color:var(--accent)">OpenClaw</a>을 설치하고 Gateway를 실행합니다.</p></div>
+          <div data-lang="en"><h3>Install OpenClaw</h3><p>Install <a href="https://docs.openclaw.ai" style="color:var(--accent)">OpenClaw</a> on your PC or server and start the Gateway.</p></div>
         </div>
         <div class="step-card">
           <div class="step-number">2</div>
-          <h3>앱 설치</h3>
-          <p>App Store 또는 Google Play에서 BOTALKS를 다운로드합니다.</p>
+          <div data-lang="ko"><h3>앱 설치</h3><p>App Store 또는 Google Play에서 BOTALKS를 다운로드합니다.</p></div>
+          <div data-lang="en"><h3>Install the App</h3><p>Download BOTALKS from the App Store or Google Play.</p></div>
         </div>
         <div class="step-card">
           <div class="step-number">3</div>
-          <h3>QR 코드 연결</h3>
-          <p><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;font-size:0.85rem">openclaw qr</code> 명령으로 QR 코드를 생성하고 앱에서 스캔합니다.</p>
+          <div data-lang="ko"><h3>QR 코드 연결</h3><p><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;font-size:0.85rem">openclaw qr</code> 명령으로 QR 코드를 생성하고 앱에서 스캔합니다.</p></div>
+          <div data-lang="en"><h3>Connect via QR</h3><p>Run <code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;font-size:0.85rem">openclaw qr</code> to generate a QR code, then scan it with the app.</p></div>
         </div>
         <div class="step-card">
           <div class="step-number">4</div>
-          <h3>대화 시작! 🎙️</h3>
-          <p>마이크 버튼을 누르고 말하면 AI가 음성으로 대답합니다.</p>
+          <div data-lang="ko"><h3>대화 시작! 🎙️</h3><p>마이크 버튼을 누르고 말하면 AI가 음성으로 대답합니다.</p></div>
+          <div data-lang="en"><h3>Start Talking! 🎙️</h3><p>Press the mic button and speak — AI responds with voice.</p></div>
         </div>
       </div>
     </div>
@@ -328,20 +264,52 @@
   <!-- Pricing -->
   <section id="pricing">
     <div class="section-inner">
-      <h2 class="section-title">심플한 가격</h2>
-      <p class="section-desc">구독 없음. 한 번 구매, 영원히 사용.</p>
-      <div class="pricing-card">
-        <div class="pricing-label">Lifetime Access</div>
-        <div class="pricing-amount">₩9,900</div>
-        <div class="pricing-period">일회성 구매 · 구독 없음</div>
-        <div class="pricing-trial">🎉 7일 무료 체험</div>
-        <ul class="pricing-features">
-          <li><span class="check">✓</span> 무제한 음성 대화</li>
-          <li><span class="check">✓</span> 모든 AI 모델 지원</li>
-          <li><span class="check">✓</span> 실시간 STT + TTS</li>
-          <li><span class="check">✓</span> 프라이버시 보호</li>
-          <li><span class="check">✓</span> 향후 업데이트 포함</li>
-        </ul>
+      <div data-lang="ko">
+        <h2 class="section-title">심플한 가격</h2>
+        <p class="section-desc">내 AI, 내 데이터. 월 3,900원으로 시작.</p>
+      </div>
+      <div data-lang="en">
+        <h2 class="section-title">Simple Pricing</h2>
+        <p class="section-desc">Your AI, your data. Starting at $2.99/month.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div data-lang="ko">
+            <div class="pricing-label">월간 구독</div>
+            <div class="pricing-amount"><span class="currency">₩</span>3,900</div>
+            <div class="pricing-period">/ 월</div>
+          </div>
+          <div data-lang="en">
+            <div class="pricing-label">Monthly</div>
+            <div class="pricing-amount"><span class="currency">$</span>2.99</div>
+            <div class="pricing-period">/ month</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> <span data-lang-inline="ko">무제한 음성 대화</span><span data-lang-inline="en">Unlimited voice chats</span></li>
+            <li><span class="check">✓</span> <span data-lang-inline="ko">모든 AI 모델 지원</span><span data-lang-inline="en">All AI models</span></li>
+            <li><span class="check">✓</span> <span data-lang-inline="ko">실시간 STT + TTS</span><span data-lang-inline="en">Real-time STT + TTS</span></li>
+            <li><span class="check">✓</span> <span data-lang-inline="ko">프라이버시 보호</span><span data-lang-inline="en">Privacy protection</span></li>
+          </ul>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge" data-lang-inline="ko">Best Value</div>
+          <div class="pricing-badge" data-lang-inline="en">Best Value</div>
+          <div data-lang="ko">
+            <div class="pricing-label">연간 구독</div>
+            <div class="pricing-amount"><span class="currency">₩</span>29,900</div>
+            <div class="pricing-period">/ 년 (₩2,492/월 · 37% 할인)</div>
+          </div>
+          <div data-lang="en">
+            <div class="pricing-label">Annual</div>
+            <div class="pricing-amount"><span class="currency">$</span>19.99</div>
+            <div class="pricing-period">/ year ($1.67/mo · save 44%)</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> <span data-lang-inline="ko">월간 구독의 모든 기능</span><span data-lang-inline="en">Everything in Monthly</span></li>
+            <li><span class="check">✓</span> <span data-lang-inline="ko">향후 업데이트 포함</span><span data-lang-inline="en">Future updates included</span></li>
+            <li><span class="check">✓</span> <span data-lang-inline="ko">우선 지원</span><span data-lang-inline="en">Priority support</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -349,24 +317,30 @@
   <!-- Requirements -->
   <section>
     <div class="section-inner">
-      <h2 class="section-title">요구 사항</h2>
-      <p class="section-desc">시작하기 전에 확인하세요</p>
+      <div data-lang="ko">
+        <h2 class="section-title">요구 사항</h2>
+        <p class="section-desc">시작하기 전에 확인하세요</p>
+      </div>
+      <div data-lang="en">
+        <h2 class="section-title">Requirements</h2>
+        <p class="section-desc">Check before you start</p>
+      </div>
       <div class="req-list">
         <div class="req-item">
           <span class="icon">📱</span>
-          <p>iOS 16.0 이상 / Android 8.0 이상</p>
+          <p><span data-lang-inline="ko">iOS 16.0 이상 / Android 8.0 이상</span><span data-lang-inline="en">iOS 16.0+ / Android 8.0+</span></p>
         </div>
         <div class="req-item">
           <span class="icon">🎤</span>
-          <p>마이크 권한 (음성 대화 기능)</p>
+          <p><span data-lang-inline="ko">마이크 권한 (음성 대화 기능)</span><span data-lang-inline="en">Microphone permission (voice chat)</span></p>
         </div>
         <div class="req-item">
           <span class="icon">🖥️</span>
-          <p>OpenClaw Gateway 연결 (QR 코드 또는 수동 입력)</p>
+          <p><span data-lang-inline="ko">OpenClaw Gateway 연결 (QR 코드 또는 수동 입력)</span><span data-lang-inline="en">OpenClaw Gateway connection (QR or manual)</span></p>
         </div>
         <div class="req-item">
           <span class="icon">🌐</span>
-          <p>인터넷 연결</p>
+          <p><span data-lang-inline="ko">인터넷 연결</span><span data-lang-inline="en">Internet connection</span></p>
         </div>
       </div>
     </div>
@@ -377,10 +351,10 @@
     <div class="footer-inner">
       <div class="footer-brand">🎙️ <span>BOTALKS</span></div>
       <div class="footer-links">
-        <a href="/privacy/">개인정보처리방침</a>
-        <a href="/terms/">이용약관</a>
-        <a href="/support/">고객지원</a>
-        <a href="mailto:support@botalks.app">이메일</a>
+        <a href="/privacy/"><span data-lang-inline="ko">개인정보처리방침</span><span data-lang-inline="en">Privacy</span></a>
+        <a href="/terms/"><span data-lang-inline="ko">이용약관</span><span data-lang-inline="en">Terms</span></a>
+        <a href="/support/"><span data-lang-inline="ko">고객지원</span><span data-lang-inline="en">Support</span></a>
+        <a href="mailto:support@botalks.app"><span data-lang-inline="ko">이메일</span><span data-lang-inline="en">Email</span></a>
       </div>
       <div class="footer-copy">
         &copy; 2026 BOTALKS. All rights reserved. · support@botalks.app
@@ -388,5 +362,32 @@
     </div>
   </footer>
 
+  <script>
+    function switchLang(lang) {
+      // For ko/en, toggle on this page
+      if (lang === 'ko' || lang === 'en') {
+        document.documentElement.lang = lang;
+        localStorage.setItem('botalks-lang', lang);
+      }
+      // For other languages, redirect (future pages)
+      if (lang === 'vi') window.location.href = '/vi/';
+      if (lang === 'ja') window.location.href = '/ja/';
+      if (lang === 'zh') window.location.href = '/zh/';
+    }
+    // Restore saved language
+    (function() {
+      var saved = localStorage.getItem('botalks-lang');
+      if (saved && (saved === 'ko' || saved === 'en')) {
+        document.documentElement.lang = saved;
+        var sel = document.getElementById('lang-switch');
+        if (sel) sel.value = saved;
+      }
+      // Auto-detect browser language
+      if (!saved) {
+        var bl = (navigator.language || '').toLowerCase();
+        if (bl.startsWith('en')) switchLang('en');
+      }
+    })();
+  </script>
 </body>
 </html>
