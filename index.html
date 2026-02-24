@@ -154,9 +154,6 @@
           <select id="lang-switch" onchange="switchLang(this.value)">
             <option value="ko">🇰🇷 한국어</option>
             <option value="en">🇺🇸 English</option>
-            <option value="vi">🇻🇳 Tiếng Việt</option>
-            <option value="ja">🇯🇵 日本語</option>
-            <option value="zh">🇨🇳 中文</option>
           </select>
         </div>
         <a href="https://testflight.apple.com/join/tjSbthwS" class="nav-cta" data-lang-inline="ko">다운로드</a><a href="https://testflight.apple.com/join/tjSbthwS" class="nav-cta" data-lang-inline="en">Download</a>
@@ -364,29 +361,20 @@
 
   <script>
     function switchLang(lang) {
-      // For ko/en, toggle on this page
       if (lang === 'ko' || lang === 'en') {
         document.documentElement.lang = lang;
         localStorage.setItem('botalks-lang', lang);
+        var sel = document.getElementById('lang-switch');
+        if (sel) sel.value = lang;
       }
-      // For other languages, redirect (future pages)
-      if (lang === 'vi') window.location.href = '/vi/';
-      if (lang === 'ja') window.location.href = '/ja/';
-      if (lang === 'zh') window.location.href = '/zh/';
     }
-    // Restore saved language
+    // Restore saved language or default to Korean
     (function() {
       var saved = localStorage.getItem('botalks-lang');
       if (saved && (saved === 'ko' || saved === 'en')) {
-        document.documentElement.lang = saved;
-        var sel = document.getElementById('lang-switch');
-        if (sel) sel.value = saved;
+        switchLang(saved);
       }
-      // Auto-detect browser language
-      if (!saved) {
-        var bl = (navigator.language || '').toLowerCase();
-        if (bl.startsWith('en')) switchLang('en');
-      }
+      // Default is Korean (html lang="ko"), no auto-detect override
     })();
   </script>
 </body>
