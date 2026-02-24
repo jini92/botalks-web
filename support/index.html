@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — BOTALKS</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
+  <style>
+    :root { --bg: #0a0a0f; --surface: #16161f; --text: #f5f5f7; --muted: #8e8ea0; --accent: #818cf8; --primary: #2563eb; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); margin-bottom: 32px; }
+    h2 { font-size: 1.3rem; margin: 32px 0 12px; color: var(--accent); }
+    h3 { font-size: 1.05rem; margin: 20px 0 8px; }
+    p, li { color: var(--muted); margin-bottom: 12px; }
+    ul { padding-left: 20px; list-style: none; }
+    ul li::before { content: "• "; color: var(--accent); }
+    a { color: var(--accent); }
+    .back { display: inline-block; margin-bottom: 24px; color: var(--primary); text-decoration: none; font-weight: 600; }
+    .contact-card { background: var(--surface); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.06); margin: 20px 0; }
+    .contact-card .emoji { font-size: 24px; margin-right: 8px; }
+    .faq { background: var(--surface); border-radius: 12px; padding: 20px; margin: 12px 0; border: 1px solid rgba(255,255,255,0.06); }
+    .faq h3 { color: var(--text); margin-top: 0; }
+    .faq p { margin-bottom: 0; }
+    code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); color: var(--muted); font-size: 0.85rem; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← BOTALKS</a>
+
+    <h1>🎙️ BOTALKS Support</h1>
+    <p class="subtitle">도움이 필요하신가요? 아래에서 답을 찾아보세요.</p>
+
+    <div class="contact-card">
+      <p><span class="emoji">📧</span> <strong>이메일:</strong> <a href="mailto:support@botalks.app">support@botalks.app</a></p>
+      <p><span class="emoji">🐛</span> <strong>버그 리포트:</strong> <a href="https://github.com/jini92/MAIBOTALKS/issues">GitHub Issues</a></p>
+    </div>
+
+    <h2>자주 묻는 질문 (FAQ)</h2>
+
+    <div class="faq">
+      <h3>OpenClaw Gateway가 뭔가요?</h3>
+      <p>OpenClaw은 PC나 서버에서 실행하는 AI 게이트웨이입니다. BOTALKS는 이 게이트웨이에 연결하여 AI 음성 대화를 가능하게 합니다. <a href="https://docs.openclaw.ai">docs.openclaw.ai</a>에서 설치하실 수 있습니다.</p>
+    </div>
+
+    <div class="faq">
+      <h3>앱에서 Gateway에 연결하려면?</h3>
+      <p><strong>방법 1 — QR 코드:</strong> PC에서 <code>openclaw qr</code> 명령을 실행하면 QR 코드가 표시됩니다. 앱에서 스캔하면 자동 연결됩니다.</p>
+      <p><strong>방법 2 — 수동 입력:</strong> 온보딩 또는 설정 화면에서 "직접 입력하기"를 선택하고 Gateway URL과 API Token을 입력합니다.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Gateway URL과 Token은 어디서 확인하나요?</h3>
+      <p>터미널에서 다음 명령을 실행하세요:</p>
+      <p><code>openclaw qr --json</code></p>
+      <p>또는 OpenClaw 채팅에서 <code>/botalks setup</code>을 입력하세요.</p>
+    </div>
+
+    <div class="faq">
+      <h3>연결이 안 돼요</h3>
+      <ul>
+        <li>OpenClaw Gateway가 실행 중인지 확인하세요</li>
+        <li>같은 네트워크(Wi-Fi)에 연결되어 있는지 확인하세요</li>
+        <li>Gateway URL과 Token이 정확한지 확인하세요</li>
+        <li>방화벽이 포트를 차단하고 있지 않은지 확인하세요</li>
+        <li>외부 접속 시 Tailscale 등 터널링 도구를 사용하세요</li>
+      </ul>
+    </div>
+
+    <div class="faq">
+      <h3>음성이 안 나와요</h3>
+      <ul>
+        <li>폰 볼륨이 켜져 있는지 확인하세요</li>
+        <li>무음 모드(음소거)가 아닌지 확인하세요</li>
+        <li>블루투스 장치 연결 상태를 확인하세요</li>
+      </ul>
+    </div>
+
+    <div class="faq">
+      <h3>마이크가 안 돼요</h3>
+      <ul>
+        <li><strong>iOS:</strong> 설정 → BOTALKS → 마이크 권한 허용</li>
+        <li><strong>Android:</strong> 설정 → 앱 → BOTALKS → 권한 → 마이크 허용</li>
+      </ul>
+    </div>
+
+    <div class="faq">
+      <h3>외부(집 밖)에서 접속하고 싶어요</h3>
+      <p>OpenClaw Gateway에 외부 접속하려면 <a href="https://tailscale.com">Tailscale</a>, ngrok 등 터널링 도구를 사용하세요. 터널 URL을 Gateway URL로 설정하면 됩니다.</p>
+    </div>
+
+    <div class="faq">
+      <h3>구독인가요?</h3>
+      <p>아닙니다. ₩9,900 <strong>일회성 구매</strong>입니다. 구독 없음, 추가 결제 없음. 7일 무료 체험 후 구매하시면 됩니다.</p>
+    </div>
+
+    <div class="faq">
+      <h3>환불 받을 수 있나요?</h3>
+      <p>환불은 Apple App Store 또는 Google Play의 정책에 따라 처리됩니다. 각 스토어의 환불 절차를 따라주세요.</p>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Jinhee Lee. All rights reserved.</p>
+      <p style="margin-top:8px"><a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></p>
+    </footer>
+  </div>
+</body>
+</html>
