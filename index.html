@@ -3,148 +3,390 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOTALKS — AI 음성 대화 앱</title>
+  <title>BOTALKS — Voice-First AI Conversations</title>
+  <meta name="description" content="말하면 AI가 대답합니다. BOTALKS로 언제 어디서나 자연스러운 음성 대화를 경험하세요. Talk and AI responds.">
+  <meta property="og:title" content="BOTALKS — Voice-First AI Conversations">
+  <meta property="og:description" content="말하면 AI가 대답합니다. BOTALKS로 언제 어디서나 자연스러운 음성 대화를 경험하세요.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://botalks.app/">
+  <meta property="og:image" content="https://botalks.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root { --primary: #2563eb; --bg: #0a0a0f; --surface: #16161f; --text: #f5f5f7; --muted: #8e8ea0; --accent: #818cf8; }
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --primary-glow: rgba(59,130,246,0.15);
+      --bg: #050507;
+      --surface: #111118;
+      --surface-hover: #1a1a24;
+      --border: rgba(255,255,255,0.06);
+      --text: #f5f5f7;
+      --muted: #8e8ea0;
+      --accent: #818cf8;
+      --gradient-start: #3b82f6;
+      --gradient-end: #8b5cf6;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-    header { text-align: center; padding: 60px 20px 40px; }
-    header h1 { font-size: 3rem; margin-bottom: 8px; }
-    header .tagline { font-size: 1.2rem; color: var(--muted); }
-    .hero { text-align: center; padding: 40px 20px; }
-    .hero .emoji { font-size: 80px; margin-bottom: 20px; }
-    .hero p { font-size: 1.1rem; color: var(--muted); max-width: 500px; margin: 0 auto 16px; }
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 40px 20px; }
-    .feature { background: var(--surface); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.06); }
-    .feature .icon { font-size: 32px; margin-bottom: 12px; }
-    .feature h3 { font-size: 1rem; margin-bottom: 8px; }
-    .feature p { font-size: 0.9rem; color: var(--muted); }
-    .cta { text-align: center; padding: 40px 20px; }
-    .cta a { display: inline-block; background: var(--primary); color: #fff; padding: 16px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
-    .cta a:hover { opacity: 0.9; }
-    .how-it-works { padding: 40px 20px; }
-    .how-it-works h2 { text-align: center; font-size: 1.8rem; margin-bottom: 32px; }
-    .steps { display: flex; flex-direction: column; gap: 24px; max-width: 600px; margin: 0 auto; }
-    .step { display: flex; gap: 16px; align-items: flex-start; }
-    .step-num { background: var(--primary); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
-    .step-content h3 { margin-bottom: 4px; }
-    .step-content p { color: var(--muted); font-size: 0.95rem; }
-    .pricing { text-align: center; padding: 40px 20px; }
-    .pricing h2 { font-size: 1.8rem; margin-bottom: 16px; }
-    .price-card { display: inline-block; background: var(--surface); border-radius: 16px; padding: 32px 48px; border: 2px solid var(--primary); }
-    .price-card .amount { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
-    .price-card .period { color: var(--muted); }
-    .price-card .trial { color: var(--accent); margin-top: 8px; font-weight: 600; }
-    footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); color: var(--muted); font-size: 0.9rem; }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    footer .links { margin-bottom: 12px; }
-    footer .links a { margin: 0 12px; }
-    .requirements { padding: 20px; max-width: 600px; margin: 0 auto; }
-    .requirements h2 { text-align: center; font-size: 1.5rem; margin-bottom: 16px; }
-    .requirements ul { list-style: none; }
-    .requirements li { padding: 8px 0; color: var(--muted); }
-    .requirements li::before { content: "✅ "; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* === NAV === */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(5,5,7,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+    }
+    nav .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+    nav .logo span { color: var(--primary); }
+    nav .nav-links { display: flex; gap: 24px; align-items: center; }
+    nav .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    nav .nav-links a:hover { color: var(--text); }
+    nav .nav-cta {
+      background: var(--primary); color: #fff !important;
+      padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+    }
+    nav .nav-cta:hover { background: var(--primary-dark); }
+
+    /* === HERO === */
+    .hero {
+      text-align: center;
+      padding: 160px 24px 80px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 32px;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900; letter-spacing: -0.03em;
+      line-height: 1.1; margin-bottom: 20px;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle {
+      font-size: 1.15rem; color: var(--muted); max-width: 540px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary); color: #fff; padding: 14px 28px;
+      border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); color: var(--text); padding: 14px 28px;
+      border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem;
+      border: 1px solid var(--border); transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: var(--surface-hover); }
+
+    /* === SECTION COMMON === */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      text-align: center; font-size: 2rem; font-weight: 800;
+      letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .section-desc {
+      text-align: center; color: var(--muted); font-size: 1.05rem;
+      max-width: 500px; margin: 0 auto 48px;
+    }
+
+    /* === FEATURES === */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;
+    }
+    .feature-card {
+      background: var(--surface); border-radius: 16px; padding: 28px;
+      border: 1px solid var(--border); transition: all 0.3s;
+    }
+    .feature-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 16px;
+      background: var(--primary-glow);
+    }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* === HOW IT WORKS === */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;
+    }
+    .step-card { text-align: center; padding: 20px; }
+    .step-number {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.2rem; margin: 0 auto 16px;
+    }
+    .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step-card p { color: var(--muted); font-size: 0.9rem; }
+    .step-connector { display: none; }
+
+    /* === PRICING === */
+    .pricing-card {
+      max-width: 400px; margin: 0 auto;
+      background: var(--surface); border-radius: 20px; padding: 40px;
+      border: 2px solid var(--primary); text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .pricing-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    }
+    .pricing-label { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .pricing-amount { font-size: 3rem; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
+    .pricing-period { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
+    .pricing-trial {
+      display: inline-block; background: rgba(129,140,248,0.1);
+      color: var(--accent); padding: 6px 16px; border-radius: 100px;
+      font-weight: 600; font-size: 0.9rem;
+    }
+    .pricing-features { margin-top: 24px; text-align: left; }
+    .pricing-features li {
+      list-style: none; padding: 8px 0; color: var(--muted); font-size: 0.9rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pricing-features .check { color: #22c55e; font-size: 1.1rem; }
+
+    /* === REQUIREMENTS === */
+    .req-list {
+      max-width: 500px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .req-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--surface); border-radius: 12px; padding: 14px 20px;
+      border: 1px solid var(--border);
+    }
+    .req-item .icon { font-size: 1.2rem; }
+    .req-item p { color: var(--muted); font-size: 0.9rem; }
+
+    /* === FOOTER === */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand { font-weight: 700; font-size: 1rem; }
+    .footer-brand span { color: var(--primary); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { width: 100%; text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 16px; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 640px) {
+      .hero { padding: 120px 16px 60px; }
+      .hero h1 { font-size: 2.2rem; }
+      section { padding: 60px 16px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+      nav .nav-links { gap: 12px; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🎙️ BOTALKS</h1>
-    <p class="tagline">Voice-First AI Conversations</p>
-  </header>
 
-  <div class="hero">
-    <div class="emoji">👋🎙️</div>
-    <p>말하면 AI가 대답합니다. BOTALKS로 언제 어디서나 자연스러운 음성 대화를 경험하세요.</p>
-    <p>Talk and AI responds. Experience natural voice conversations anytime with BOTALKS.</p>
-  </div>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">🎙️ <span>BOTALKS</span></div>
+      <div class="nav-links">
+        <a href="#features">기능</a>
+        <a href="#how-it-works">사용법</a>
+        <a href="#pricing">가격</a>
+        <a href="/support/">지원</a>
+        <a href="https://testflight.apple.com/join/tjSbthwS" class="nav-cta">다운로드</a>
+      </div>
+    </div>
+  </nav>
 
-  <div class="features">
-    <div class="feature">
-      <div class="icon">🎤</div>
-      <h3>실시간 음성 대화</h3>
-      <p>마이크 버튼 하나로 녹음 → STT → AI 응답 → TTS까지 자동 처리</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      App Store 출시 준비 중
     </div>
-    <div class="feature">
-      <div class="icon">📱</div>
-      <h3>간편한 연결</h3>
-      <p>QR 코드 또는 딥링크로 OpenClaw Gateway에 즉시 연결</p>
+    <h1>말하면 AI가<br><span class="gradient">대답합니다</span></h1>
+    <p class="subtitle">
+      BOTALKS로 언제 어디서나 자연스러운 음성 대화를 경험하세요.<br>
+      Talk and AI responds. Voice-first AI conversations.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://testflight.apple.com/join/tjSbthwS" class="btn-primary">
+        🍎 TestFlight 참여하기
+      </a>
+      <a href="#how-it-works" class="btn-secondary">
+        사용 방법 보기 →
+      </a>
     </div>
-    <div class="feature">
-      <div class="icon">🔒</div>
-      <h3>프라이버시 우선</h3>
-      <p>음성 데이터는 실시간 처리 후 즉시 삭제. 서버에 저장하지 않음</p>
-    </div>
-    <div class="feature">
-      <div class="icon">⚡</div>
-      <h3>5단계 온보딩</h3>
-      <p>처음 사용자도 가이드를 따라 쉽고 빠르게 시작할 수 있습니다</p>
-    </div>
-  </div>
+  </section>
 
-  <div class="how-it-works">
-    <h2>사용 방법</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
+  <!-- Features -->
+  <section id="features">
+    <div class="section-inner">
+      <h2 class="section-title">왜 BOTALKS인가요?</h2>
+      <p class="section-desc">타이핑 대신 대화하세요. 가장 자연스러운 AI 인터페이스.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎤</div>
+          <h3>실시간 음성 대화</h3>
+          <p>마이크 버튼 하나로 녹음 → STT → AI 응답 → TTS까지 자동 처리. 끊김 없는 대화 경험.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>간편한 연결</h3>
+          <p>QR 코드 스캔 한 번이면 끝. 또는 딥링크로 OpenClaw Gateway에 즉시 연결됩니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>프라이버시 우선</h3>
+          <p>음성 데이터는 실시간 처리 후 즉시 삭제. 서버에 저장하지 않습니다. 당신의 대화는 당신만의 것.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>5단계 온보딩</h3>
+          <p>처음 사용자도 가이드를 따라 쉽고 빠르게 시작. 복잡한 설정 없이 바로 대화를 시작하세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" style="background: var(--surface);">
+    <div class="section-inner">
+      <h2 class="section-title">사용 방법</h2>
+      <p class="section-desc">4단계로 시작하는 AI 음성 대화</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
           <h3>OpenClaw 설치</h3>
           <p>PC 또는 서버에 <a href="https://docs.openclaw.ai" style="color:var(--accent)">OpenClaw</a>을 설치하고 Gateway를 실행합니다.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h3>BOTALKS 앱 설치</h3>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>앱 설치</h3>
           <p>App Store 또는 Google Play에서 BOTALKS를 다운로드합니다.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h3>QR 코드로 연결</h3>
-          <p>PC에서 <code>openclaw qr</code> 명령으로 QR 코드를 생성하고, 앱에서 스캔합니다. 또는 Gateway URL과 토큰을 직접 입력할 수도 있습니다.</p>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>QR 코드 연결</h3>
+          <p><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;font-size:0.85rem">openclaw qr</code> 명령으로 QR 코드를 생성하고 앱에서 스캔합니다.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <h3>대화 시작!</h3>
-          <p>마이크 버튼을 누르고 말하면 AI가 음성으로 대답합니다. 🎙️</p>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>대화 시작! 🎙️</h3>
+          <p>마이크 버튼을 누르고 말하면 AI가 음성으로 대답합니다.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="pricing">
-    <h2>심플한 가격</h2>
-    <div class="price-card">
-      <div class="amount">₩9,900</div>
-      <div class="period">일회성 구매 · 구독 없음</div>
-      <div class="trial">7일 무료 체험</div>
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="section-inner">
+      <h2 class="section-title">심플한 가격</h2>
+      <p class="section-desc">구독 없음. 한 번 구매, 영원히 사용.</p>
+      <div class="pricing-card">
+        <div class="pricing-label">Lifetime Access</div>
+        <div class="pricing-amount">₩9,900</div>
+        <div class="pricing-period">일회성 구매 · 구독 없음</div>
+        <div class="pricing-trial">🎉 7일 무료 체험</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> 무제한 음성 대화</li>
+          <li><span class="check">✓</span> 모든 AI 모델 지원</li>
+          <li><span class="check">✓</span> 실시간 STT + TTS</li>
+          <li><span class="check">✓</span> 프라이버시 보호</li>
+          <li><span class="check">✓</span> 향후 업데이트 포함</li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="requirements">
-    <h2>요구 사항</h2>
-    <ul>
-      <li>iOS 16.0 이상 / Android 8.0 이상</li>
-      <li>마이크 권한 (음성 대화 기능)</li>
-      <li>OpenClaw Gateway 연결 (QR 코드 또는 수동 입력)</li>
-      <li>인터넷 연결</li>
-    </ul>
-  </div>
+  <!-- Requirements -->
+  <section>
+    <div class="section-inner">
+      <h2 class="section-title">요구 사항</h2>
+      <p class="section-desc">시작하기 전에 확인하세요</p>
+      <div class="req-list">
+        <div class="req-item">
+          <span class="icon">📱</span>
+          <p>iOS 16.0 이상 / Android 8.0 이상</p>
+        </div>
+        <div class="req-item">
+          <span class="icon">🎤</span>
+          <p>마이크 권한 (음성 대화 기능)</p>
+        </div>
+        <div class="req-item">
+          <span class="icon">🖥️</span>
+          <p>OpenClaw Gateway 연결 (QR 코드 또는 수동 입력)</p>
+        </div>
+        <div class="req-item">
+          <span class="icon">🌐</span>
+          <p>인터넷 연결</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Footer -->
   <footer>
-    <div class="links">
-      <a href="/privacy/">개인정보처리방침</a>
-      <a href="/terms/">이용약관</a>
-      <a href="/support/">지원</a>
+    <div class="footer-inner">
+      <div class="footer-brand">🎙️ <span>BOTALKS</span></div>
+      <div class="footer-links">
+        <a href="/privacy/">개인정보처리방침</a>
+        <a href="/terms/">이용약관</a>
+        <a href="/support/">고객지원</a>
+        <a href="mailto:support@botalks.app">이메일</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 BOTALKS. All rights reserved. · support@botalks.app
+      </div>
     </div>
-    <p>&copy; 2026 Jinhee Lee. All rights reserved.</p>
-    <p style="margin-top:8px">support@botalks.app</p>
   </footer>
+
 </body>
 </html>
