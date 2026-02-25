@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>개인정보처리방침 — BOTALKS</title>
-  <meta name="description" content="BOTALKS 개인정보처리방침 — 이용자 데이터 처리 방식을 설명합니다.">
+  <meta name="description" content="BOTALKS 개인정보처리방침 — 수집하는 데이터, 사용 방법, 보호 방법을 설명합니다.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
   <link rel="stylesheet" href="/shared.css">
 </head>
@@ -23,55 +23,134 @@
     <span class="lang-switch"><a href="/privacy/">English</a></span>
 
     <h1>🔒 개인정보처리방침</h1>
-    <p class="updated">최종 수정일: 2026년 2월 22일</p>
+    <p class="updated">최종 수정일: 2026년 2월 25일</p>
 
     <h2>1. 소개</h2>
-    <p>BOTALKS("당사", "앱")는 이용자의 개인정보 보호를 중요하게 생각합니다. 본 개인정보처리방침은 BOTALKS 음성 대화 앱 사용 시 정보가 어떻게 처리되는지 설명합니다.</p>
+    <p>BOTALKS("당사", "앱")는 이용자의 개인정보 보호를 중요하게 생각합니다. 본 개인정보처리방침은 BOTALKS AI 음성 대화 앱 사용 시 수집하는 데이터, 수집 방법, 사용 목적, 데이터를 수신하는 제3자에 대해 설명합니다.</p>
 
     <h2>2. BOTALKS 작동 방식</h2>
-    <p>BOTALKS는 이용자가 직접 운영하는 OpenClaw Gateway에 연결되는 클라이언트 앱입니다. <strong>당사는 이용자의 데이터를 처리하는 중앙 서버를 운영하지 않습니다.</strong></p>
-    <p>모든 음성 처리, AI 대화, 데이터 처리는 이용자의 모바일 기기와 이용자 소유의 OpenClaw Gateway 사이에서 이루어집니다.</p>
+    <p>BOTALKS는 이용자가 직접 운영하는 OpenClaw Gateway에 연결되는 클라이언트 앱입니다. <strong>당사는 이용자의 대화 데이터를 처리하는 중앙 서버를 운영하지 않습니다.</strong></p>
+    <p>BOTALKS 사용 시 다음과 같은 데이터 흐름이 발생합니다:</p>
+    <ol>
+      <li><strong>음성 녹음:</strong> 마이크 버튼을 누르면 기기에서 음성이 녹음됩니다.</li>
+      <li><strong>음성→텍스트 변환:</strong> 녹음된 오디오가 이용자의 OpenClaw Gateway로 전송되어 텍스트로 변환됩니다.</li>
+      <li><strong>AI 처리:</strong> 변환된 텍스트가 Gateway를 통해 이용자가 설정한 AI 제공업체(Anthropic Claude, OpenAI GPT 등)로 전달됩니다.</li>
+      <li><strong>응답:</strong> AI가 생성한 텍스트 응답이 Gateway를 통해 돌아오고, 음성으로 변환되어 기기에서 재생됩니다.</li>
+    </ol>
 
-    <h2>3. 수집하는 정보</h2>
+    <h2>3. 수집하는 데이터</h2>
 
-    <h3>3.1 음성 데이터</h3>
-    <p>음성 녹음은 기기에서 캡처되어 <strong>이용자 소유의</strong> OpenClaw Gateway로 전송되어 처리되며, AI 응답 생성 후 <strong>즉시 폐기</strong>됩니다. 당사는 음성 데이터를 저장, 수집하거나 접근하지 않습니다.</p>
+    <h3>3.1 음성 녹음 (오디오 데이터)</h3>
+    <p><strong>수집 항목:</strong> 음성 대화 기능 사용 시 이용자의 음성 녹음</p>
+    <p><strong>수집 방법:</strong> 마이크 버튼을 누르고 있는 동안 기기 마이크로 녹음</p>
+    <p><strong>전송 대상:</strong> <strong>이용자 소유의</strong> OpenClaw Gateway 서버 (음성→텍스트 변환 처리)</p>
+    <p><strong>보존 기간:</strong> 텍스트 변환 후 <strong>즉시 폐기</strong>. 음성 녹음은 저장하지 않습니다.</p>
 
-    <h3>3.2 Gateway 연결 정보</h3>
-    <p>Gateway URL과 인증 토큰은 <strong>이용자의 기기에만 로컬로</strong> 저장됩니다. 이 정보는 당사에게 전송되지 않습니다.</p>
+    <h3>3.2 텍스트 쿼리 (대화 데이터)</h3>
+    <p><strong>수집 항목:</strong> 음성에서 변환된 텍스트와 AI 응답</p>
+    <p><strong>수집 방법:</strong> Gateway에서 음성→텍스트 처리 시 생성</p>
+    <p><strong>전송 대상:</strong> Gateway에서 제3자 AI 제공업체(5조 참조)로 전송하여 응답 생성. 대화 내역은 화면 표시를 위해 기기에 로컬 저장될 수 있습니다.</p>
+    <p><strong>보존 기간:</strong> 로컬 대화 내역은 앱 설정에서 삭제 가능. Gateway의 데이터는 이용자가 직접 관리합니다.</p>
 
-    <h3>3.3 진단 데이터</h3>
-    <p>앱 개선을 위해 익명의 충돌 보고서와 기본 사용 분석 데이터를 수집할 수 있습니다. 이 데이터로는 개인을 식별할 수 없습니다.</p>
+    <h3>3.3 Gateway 연결 정보</h3>
+    <p><strong>수집 항목:</strong> Gateway URL 및 인증 토큰</p>
+    <p><strong>수집 방법:</strong> QR 코드 스캔, 딥링크, 또는 수동 입력으로 이용자가 직접 입력</p>
+    <p><strong>전송 대상:</strong> <strong>이용자 기기에만 로컬 저장</strong>. 당사나 제3자에게 전송되지 않습니다.</p>
 
-    <h2>4. 수집하지 않는 정보</h2>
+    <h3>3.4 구독 정보</h3>
+    <p><strong>수집 항목:</strong> 구독 상태 (활성/비활성, 플랜 유형)</p>
+    <p><strong>수집 방법:</strong> Apple 인앱결제(StoreKit)를 통해 관리</p>
+    <p><strong>전송 대상:</strong> Apple에서 처리. 당사는 구독 상태 확인만 받으며, 결제 정보는 받지 않습니다.</p>
+
+    <h3>3.5 진단 데이터</h3>
+    <p><strong>수집 항목:</strong> 익명 충돌 보고서 및 기본 사용 분석</p>
+    <p><strong>수집 방법:</strong> Expo/React Native 프레임워크에서 자동 수집</p>
+    <p><strong>전송 대상:</strong> Expo(expo.dev)로 전송될 수 있음. 개인 식별이 불가능한 데이터입니다.</p>
+
+    <h2>4. 수집하지 않는 데이터</h2>
     <ul>
-      <li>음성 녹음을 수집<strong>하지 않습니다</strong></li>
-      <li>AI 대화 내용을 수집<strong>하지 않습니다</strong></li>
-      <li>Gateway 인증 정보를 수집<strong>하지 않습니다</strong></li>
+      <li>음성 녹음을 서버에 저장<strong>하지 않습니다</strong></li>
+      <li>AI 대화 내용에 접근<strong>하지 않습니다</strong></li>
+      <li>Gateway 인증 정보나 토큰을 수집<strong>하지 않습니다</strong></li>
       <li>개인정보를 제3자에게 판매<strong>하지 않습니다</strong></li>
-      <li>광고나 추적 목적으로 데이터를 사용<strong>하지 않습니다</strong></li>
+      <li>광고, 프로파일링, 추적 목적으로 데이터를 사용<strong>하지 않습니다</strong></li>
+      <li>위치, 연락처 등 기기 데이터를 수집<strong>하지 않습니다</strong></li>
     </ul>
 
-    <h2>5. 제3자 서비스</h2>
-    <p>이용자의 OpenClaw Gateway는 이용자의 설정에 따라 제3자 AI 제공업체(Anthropic, OpenAI 등)를 사용할 수 있습니다. 해당 서비스의 데이터 처리는 각각의 개인정보처리방침과 이용자의 설정에 따릅니다.</p>
-
-    <h2>6. 데이터 보안</h2>
-    <p>앱과 Gateway 간의 통신은 암호화된 연결(TLS/HTTPS)을 사용합니다. 인증 토큰은 기기의 로컬 저장소에 안전하게 저장됩니다.</p>
-
-    <h2>7. 이용자의 권리</h2>
+    <h2>5. 제3자 서비스 및 데이터 공유</h2>
+    <p>BOTALKS는 이용자의 자체 호스팅 OpenClaw Gateway에 연결되며, Gateway는 다음 제3자 AI 서비스 제공업체로 데이터를 전달할 수 있습니다:</p>
+    <table style="width:100%; border-collapse:collapse; margin:1em 0;">
+      <tr style="border-bottom:1px solid #333;">
+        <th style="text-align:left; padding:8px;">서비스 제공업체</th>
+        <th style="text-align:left; padding:8px;">공유 데이터</th>
+        <th style="text-align:left; padding:8px;">목적</th>
+      </tr>
+      <tr style="border-bottom:1px solid #222;">
+        <td style="padding:8px;"><strong>Anthropic</strong> (Claude)</td>
+        <td style="padding:8px;">변환된 텍스트 쿼리</td>
+        <td style="padding:8px;">AI 대화 응답 생성</td>
+      </tr>
+      <tr style="border-bottom:1px solid #222;">
+        <td style="padding:8px;"><strong>OpenAI</strong> (GPT, Whisper)</td>
+        <td style="padding:8px;">변환된 텍스트, 오디오 (STT/TTS용)</td>
+        <td style="padding:8px;">AI 응답, 음성 처리</td>
+      </tr>
+      <tr style="border-bottom:1px solid #222;">
+        <td style="padding:8px;"><strong>기타 AI 제공업체</strong></td>
+        <td style="padding:8px;">변환된 텍스트 쿼리</td>
+        <td style="padding:8px;">AI 대화 응답 생성</td>
+      </tr>
+      <tr style="border-bottom:1px solid #222;">
+        <td style="padding:8px;"><strong>Apple</strong> (StoreKit)</td>
+        <td style="padding:8px;">구독 구매 데이터</td>
+        <td style="padding:8px;">인앱결제 처리</td>
+      </tr>
+      <tr>
+        <td style="padding:8px;"><strong>Expo</strong> (expo.dev)</td>
+        <td style="padding:8px;">익명 충돌 보고서</td>
+        <td style="padding:8px;">앱 안정성 모니터링</td>
+      </tr>
+    </table>
+    <p><strong>중요:</strong> 어떤 AI 제공업체가 이용자의 데이터를 수신하는지는 전적으로 <strong>이용자의 Gateway 설정</strong>에 따릅니다. 각 제공업체의 데이터 처리는 해당 업체의 개인정보처리방침에 따릅니다:</p>
     <ul>
-      <li>앱을 삭제하여 로컬에 저장된 모든 데이터를 삭제할 수 있습니다</li>
-      <li>설정에서 언제든지 Gateway 연결을 초기화할 수 있습니다</li>
-      <li>이용자 소유의 OpenClaw Gateway에 있는 모든 데이터를 직접 관리합니다</li>
+      <li><a href="https://www.anthropic.com/privacy" target="_blank">Anthropic 개인정보처리방침</a></li>
+      <li><a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI 개인정보처리방침</a></li>
     </ul>
 
-    <h2>8. 아동 개인정보</h2>
-    <p>BOTALKS는 만 14세 미만 아동을 대상으로 하지 않습니다. 당사는 아동의 개인정보를 고의로 수집하지 않습니다.</p>
+    <h2>6. 앱 내 동의</h2>
+    <p>Gateway나 제3자 서비스로 데이터가 전송되기 전에, BOTALKS는 <strong>데이터 및 개인정보 동의 화면</strong>을 표시하여:</p>
+    <ul>
+      <li>수집하는 데이터 (음성 녹음, 텍스트 쿼리)를 설명합니다</li>
+      <li>데이터가 전송되는 대상 (이용자의 Gateway, 그리고 잠재적으로 AI 제공업체)을 명시합니다</li>
+      <li>데이터 공유 전 이용자의 <strong>명시적 동의</strong>를 요구합니다</li>
+    </ul>
+    <p>이용자는 앱 설정에서 언제든지 동의를 철회할 수 있으며, 이 경우 추가 데이터 전송이 중단됩니다.</p>
 
-    <h2>9. 방침 변경</h2>
-    <p>본 방침은 수시로 업데이트될 수 있습니다. 중요한 변경 사항은 앱을 통해 안내됩니다.</p>
+    <h2>7. 데이터 보안</h2>
+    <p>당사는 다음과 같은 보안 조치를 시행합니다:</p>
+    <ul>
+      <li>앱과 Gateway 간 모든 통신은 <strong>암호화된 연결(TLS/HTTPS)</strong>을 사용합니다</li>
+      <li>인증 토큰은 기기의 로컬 저장소에 안전하게 저장됩니다</li>
+      <li>음성 녹음은 메모리에서 처리되며 영구 저장소에 기록되지 않습니다</li>
+      <li>이용자 데이터는 당사 서버에 저장되지 않습니다 (중앙 서버 없음)</li>
+    </ul>
 
-    <h2>10. 문의</h2>
+    <h2>8. 이용자의 권리</h2>
+    <ul>
+      <li><strong>데이터 삭제:</strong> 앱을 삭제하여 로컬에 저장된 모든 데이터를 제거할 수 있습니다</li>
+      <li><strong>연결 초기화:</strong> 설정에서 언제든지 Gateway 연결을 초기화할 수 있습니다</li>
+      <li><strong>동의 철회:</strong> 설정에서 데이터 공유 동의를 철회할 수 있습니다</li>
+      <li><strong>Gateway 관리:</strong> 이용자 소유의 OpenClaw Gateway에 있는 모든 데이터를 직접 관리합니다</li>
+      <li><strong>구독 관리:</strong> Apple App Store 설정에서 구독을 취소하거나 변경할 수 있습니다</li>
+    </ul>
+
+    <h2>9. 아동 개인정보</h2>
+    <p>BOTALKS는 만 14세 미만 아동(개인정보보호법 기준)을 대상으로 하지 않습니다. 당사는 아동의 개인정보를 고의로 수집하지 않습니다.</p>
+
+    <h2>10. 방침 변경</h2>
+    <p>본 방침은 수시로 업데이트될 수 있습니다. 중요한 변경 사항은 앱을 통해 안내되며, 본 페이지 상단의 날짜가 업데이트됩니다.</p>
+
+    <h2>11. 문의</h2>
     <p>개인정보 관련 문의: <a href="mailto:support@botalks.app">support@botalks.app</a></p>
   </div>
 
